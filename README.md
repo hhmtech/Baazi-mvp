@@ -10,3 +10,4 @@
 
 This prototype synchronizes a private room, supports 2-4 players joining, and tests the 2-player 26-card opening: 4 to each player, 4 to floor, remaining 14 held, final 26 held for round 2. Full Seep capture/scoring rules are intentionally next.
 # baazi-mvp
+# baazi-mvp
