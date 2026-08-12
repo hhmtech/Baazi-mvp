@@ -1,0 +1,4 @@
+export type Card={id:string;suit:string;rank:string};export type Player={id:string;name:string};export type GameState={phase:'waiting'|'dealing';players:Player[];hands:Record<string,Card[]>;floor:Card[];secondHalf:Card[];deck:Card[];hostPlayerId:string;turnPlayerId:string|null;calledValue:number|null};
+const suits=['♠','♥','♦','♣'],ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+export function deck(){return suits.flatMap(s=>ranks.map(r=>({id:r+s,suit:s,rank:r})))};export function shuffle(d:Card[]){let a=[...d];for(let i=a.length-1;i>0;i--){let j=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+export function deal26(players:Player[],cut:number){let d=shuffle(deck());let c=Math.max(1,Math.min(51,cut));d=[...d.slice(c),...d.slice(0,c)];let first=d.slice(0,26);return{hands:{[players[0].id]:first.slice(0,4),[players[1].id]:first.slice(4,8)},floor:first.slice(8,12),deck:first.slice(12),secondHalf:d.slice(26)}}
